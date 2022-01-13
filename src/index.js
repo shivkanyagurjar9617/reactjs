@@ -6,8 +6,11 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
+    
     <h1>Welcome To My First Reactjs Page</h1>
-    <h3>Hello Everyone How Are you</h3>
+    <h2>API Calling</h2>
+    
+    <App/>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,8 +1,9 @@
 h1{
   color: brown;
 }
-h3{
+h2{
   color: blue;
+  text-align: center;
 }
 box{
   height: 50px;
