@@ -1,20 +1,41 @@
 
-import react from 'react';
+
 import {useEffect, useState } from 'react';
 import './App.css';
+import swal from 'sweetalert';
 
 function App() {
-  const [data,setData]=useState([])
+  const [studentName,setStudentName]=useState('shivkanya')
   useEffect(()=>{
-    fetch("http://localhost:1337/api/students",{
-      method:'post'
-    }).then((result)=>{
-      result.json().then((response)=>{
-        console.log("result",response)
-        setData(response)
-      })
-    })
-  })
+  },[])
+
+  let myFunction=()=>{
+    console.log(studentName);
+  var data = {
+    "data": {
+      "name": studentName
+    }
+  }
+
+  
+ 
+ 
+    fetch("https://infinite-falls-62114.herokuapp.com/api/students",{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+
+      },
+      body:JSON.stringify(data)
+    }).then((d)=>{
+      console.log(d.status);
+      if(d.status == 200){
+        swal("Good job!", "Data Created Successfully", "success");
+      }
+    }).catch((e)=>{}).finally((all)=>{});
+  
+    }
+
   
 
 
@@ -22,39 +43,26 @@ function App() {
   
 
 
-console.log(data)
+
 
   return (
-      <react.Fragment>
+      
       <div className="App">
-        
-        <table border="2">
-          <tbody>
-          <tr>
-            <td>Id</td>
-            <td>name</td>
-            <td>email</td>
-            
-          </tr>
-          {
-            data.map((item)=>
-            <tr>
-              <td>{item.Id}</td>
-              <td>{item.name}</td>
-              <td>{item.email}</td>
-              
-              </tr>
-            )
-          }
-          </tbody>
-        </table>
-        
+        { studentName }
+      <form>
+        <label>Enter Student Name:<br />
+          <input type="text" value={ studentName } onChange={ (e)=>{ setStudentName(e.target.value)  } }/>
+         
+        </label><br />
+        <input type="button" onClick={ myFunction } name="studentName" value="Save Student" />
+      </form>
       </div>
-      </react.Fragment>
+      
       
           
   );
 }
+
 
 
 export default App;
