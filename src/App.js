@@ -29,7 +29,7 @@ function App() {
       body:JSON.stringify(data)
     }).then((d)=>{
       console.log(d.status);
-      if(d.status == 200){
+      if(d.status === 200){
         swal("Good job!", "Data Created Successfully", "success");
       }
     }).catch((e)=>{}).finally((all)=>{});
