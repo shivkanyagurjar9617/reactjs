@@ -3,6 +3,7 @@
 import {useEffect, useState } from 'react';
 import './App.css';
 import swal from 'sweetalert';
+import BASE_URL from './Helper'
 
 function App() {
   const [studentName,setStudentName]=useState('shivkanya')
@@ -20,14 +21,17 @@ function App() {
   
  
  
-    fetch("https://infinite-falls-62114.herokuapp.com/api/students",{
+    fetch(BASE_URL+"/api/students",{
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
 
       },
       body:JSON.stringify(data)
-    }).then((d)=>{
+    })
+    .then(response => response.json()) 
+    .then((d)=>{
+      
       console.log(d.status);
       if(d.status === 200){
         swal("Good job!", "Data Created Successfully", "success");
